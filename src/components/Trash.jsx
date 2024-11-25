@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {restoreNote, deleteNote} from '../Features/Notes/notesSlice'
-
-
-
+import trash from "../assets/bin.png"
+import restore from "../assets/arrow.png"
 
 
 const Trash = () => {
@@ -52,13 +51,13 @@ const Trash = () => {
 
             <div className="flex gap-3">
               <button
-                className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src="/src/assets/arrow.png"
+                className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src={restore}
                   alt=""
                 />
               </button>
 
               <button
-                className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src="/src/assets/bin.png"
+                className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src={trash}
                   alt=""
                 />
               </button>
@@ -97,7 +96,7 @@ const Trash = () => {
                     <div className="w-[70%] m-auto flex justify-between">
 
                       <button
-                        className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src="/src/assets/arrow.png"
+                        className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src={restore}
                           alt=""
                           onClick={()=>{
                             handleRestore(note.id)
@@ -107,7 +106,7 @@ const Trash = () => {
 
 
                       <button
-                        className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src="/src/assets/bin.png"
+                        className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src={trash}
                           alt=""
                           onClick={()=>{
                             handleDelete(note.id)

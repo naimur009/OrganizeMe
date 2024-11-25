@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import NoteForm from "./NoteForm";
 import View from "./View";
 import { useSelector } from "react-redux";
+import addImage from "../assets/add-button.png"
 
 const Notes = () => {
 
@@ -78,7 +79,7 @@ const Notes = () => {
                 </form>
 
                 <button onClick={toggleOpen}>
-                    <img className="h-14 fixed bottom-6 right-4 md:bottom-10 md:right-10" src="/src/assets/add-button.png" alt="Add-Note" />
+                    <img className="h-14 fixed bottom-6 right-4 md:bottom-10 md:right-10" src={addImage} alt="Add-Note" />
                 </button>
 
 

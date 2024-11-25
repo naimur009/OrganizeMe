@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import trash from "../assets/bin.png"
 
 
 const ToDos = () => {
@@ -112,7 +113,7 @@ const ToDos = () => {
                         </div>
                     </div>
 
-                    <button className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src="/src/assets/bin.png" alt="" /></button>
+                    <button className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src={trash} alt="" /></button>
 
 
                 </div>
@@ -120,58 +121,7 @@ const ToDos = () => {
 
             </div>
 
-            <div className="w-[95%] md:w-[600px] mt-3 pl-3 p-2 bg-gray-700 m-auto rounded-lg flex gap-5">
-                <input
-                    type="checkbox"
-                    name="taskComplete"
-                    id="task"
-                    onClick={handleCheckBox}
-                />
 
-                <div className="flex justify-between items-center w-full">
-                    {/* text-xl text-white */}
-                    <div className="flex flex-col">
-                        <div className={isChecked ? "text-xl text-white line-through" : "text-xl text-white"}>
-                            I am a demo task
-                        </div>
-
-                        <div className="text-xs">
-                            {date}
-                        </div>
-                    </div>
-
-                    <button className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src="/src/assets/bin.png" alt="" /></button>
-
-
-                </div>
-
-
-            </div>
-
-            <div className="w-[95%] md:w-[600px] mt-3 pl-3 p-2 bg-gray-700 m-auto rounded-lg flex gap-5">
-                <input
-                    type="checkbox"
-                    name="taskComplete"
-                    id="task"
-                    onClick={handleCheckBox}
-                />
-
-                <div className="flex justify-between items-center w-full">
-                    {/* text-xl text-white */}
-                    <div className="flex flex-col">
-                        <div className={isChecked ? "text-xl text-white line-through" : "text-xl text-white"}>
-                            I am a demo task
-                        </div>
-
-                        <div className="text-xs">
-                            {date}
-                        </div>
-                    </div>
-
-                    <button className='h-8 w-8 hover:bg-blue-600 flex justify-center items-center p-1 rounded-full'><img className='h-7 w-7' src="/src/assets/bin.png" alt="" /></button>
-
-                </div>
-            </div>
 
 
         </div>

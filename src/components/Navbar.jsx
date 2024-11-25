@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import mainIcon from "../assets/notebook.png"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,7 +10,7 @@ const Navbar = () => {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img
-            src="/src/assets/notebook.png"
+            src={mainIcon}
             className="h-8"
             alt="notebook"
           />

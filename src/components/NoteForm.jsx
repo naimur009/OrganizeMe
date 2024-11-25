@@ -3,6 +3,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { addToNote, editNote } from '../Features/Notes/notesSlice'
 import { useSelector } from "react-redux";
+import close from "../assets/remove.png"
 
 
 
@@ -22,14 +23,14 @@ const NoteForm = (props) => {
 
 
     useEffect(() => {
-        if(props.prevId){
+        if (props.prevId) {
             const data = notes.find((note) =>
                 (note.id === props.prevId)
             )
             setTittle(data.tittle)
             setContent(data.content)
         }
-        
+
 
     }, [])
 
@@ -69,13 +70,13 @@ const NoteForm = (props) => {
             <div className="bg-[#202124] w-[95%] max-w-[700px] p-5 rounded-lg absolute z-10 pb-10">
                 <div className="flex justify-between items-center">
                     <h1 className="text-2xl">Create a new note</h1>
-                    <button onClick={()=>{
+                    <button onClick={() => {
                         setTittle("");
                         setContent("");
                         props.setPrevId(null);
                         props.toggle();
                     }}>
-                        <img className="h-10" src="/src/assets/remove.png" alt="" />
+                        <img className="h-10" src={close} alt="" />
                     </button>
                 </div>
                 <form className="w-full mx-auto" onSubmit={handleSave}>

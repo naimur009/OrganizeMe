@@ -2,6 +2,11 @@ import { useSelector } from "react-redux";
 import NoteForm from "./NoteForm";
 import { useDispatch } from 'react-redux';
 import { moveToTrash, editNote } from '../Features/Notes/notesSlice'
+import edit from "../assets/pen.png"
+import copy from "../assets/copy.png"
+import share from "../assets/share.png"
+import trash from "../assets/bin.png"
+
 
 
 
@@ -54,7 +59,7 @@ const View = (props) => {
                             handleEdit(note[0]?.id)
                         }}
                     >
-                        <img className='h-7' src="/src/assets/pen.png" alt="" />
+                        <img className='h-7' src={edit} alt="" />
                     </button>
 
 
@@ -64,11 +69,12 @@ const View = (props) => {
                             navigator.clipboard.writeText(note[0].content);
                         }}
                     >
-                        <img className='h-7' src="/src/assets/copy.png" alt="" />
+                        <img className='h-7' src={copy} alt="" />
                     </button>
 
 
-                    <button className='hover:bg-blue-700 p-2 rounded-full'><img className='h-7' src="/src/assets/share.png" alt="" /></button>
+                    <button className='hover:bg-blue-700 p-2 rounded-full'>
+                        <img className='h-7' src={share} alt="" /></button>
 
                     <button
                         className='hover:bg-blue-700 p-2 rounded-full'
@@ -77,7 +83,7 @@ const View = (props) => {
                             handleDelete(note[0]?.id)
                         }}
                     >
-                        <img className='h-7' src="/src/assets/bin.png" alt="" />
+                        <img className='h-7' src={trash} alt="" />
                     </button>
 
                 </div>
