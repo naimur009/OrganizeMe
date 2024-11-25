@@ -27,9 +27,9 @@ const Notes = () => {
     }
 
     const [searchQuery, setSearchQuery] = useState('');
-    const notes = useSelector((state) => state.note.notes)
+    const note = useSelector((state) => state.notes.notes)
 
-    const data = notes.filter((note) => {
+    const data = note.filter((note) => {
         return note.tittle.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()) && note.trashed === false
     })
 

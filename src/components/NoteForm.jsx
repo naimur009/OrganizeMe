@@ -18,7 +18,7 @@ const NoteForm = (props) => {
         year: "numeric",
     });
 
-    const notes = useSelector((state) => state.note.notes)
+    const notes = useSelector((state) => state.notes.notes)
 
 
     useEffect(() => {

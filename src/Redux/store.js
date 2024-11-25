@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import notesReducer from '../Features/Notes/notesSlice'
+import reducer from '../Features/combinedSlice/combined'
 
 export const store = configureStore({
-  reducer: {
-    note:notesReducer
-  },
-})
+    reducer
+}
+)

@@ -6,10 +6,6 @@ import Notes from "./components/Notes"
 import Trash from "./components/Trash"
 import { store } from "./Redux/store"
 import { Provider } from "react-redux"
-import View from "./components/View"
-import NoteForm from "./components/NoteForm"
-
-
 
 function App() {
 
@@ -33,10 +29,6 @@ function App() {
         {
           path: "trash",
           element: <Trash />
-        },
-        {
-          path: "noteform",
-          element: <NoteForm />
         },
       ]
     }

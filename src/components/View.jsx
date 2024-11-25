@@ -5,7 +5,7 @@ import { moveToTrash } from '../Features/Notes/notesSlice'
 const View = (props) => {
 
 
-    const data = useSelector((state) => state.note.notes);
+    const data = useSelector((state) => state.notes.notes);
 
     const note = data.filter((note) => {
         return (note.id === props.noteId);
