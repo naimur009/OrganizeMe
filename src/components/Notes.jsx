@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import NoteForm from "./NoteForm";
 import View from "./View";
 import { useSelector } from "react-redux";
-import addImage from "../assets/add-button.png"
+
 
 const Notes = () => {
 
@@ -34,7 +34,7 @@ const Notes = () => {
     })
 
     return (
-        <div className="overflow-x-hidden">
+        <div className="overflow-x-hidden w-[screen]">
             <div>
                 <form className="flex items-center w-[95%] max-w-sm mx-auto mt-5"
                     onSubmit={(e) => {
@@ -79,7 +79,7 @@ const Notes = () => {
                 </form>
 
                 <button onClick={toggleOpen}>
-                    <img className="h-14 fixed bottom-6 right-4 md:bottom-10 md:right-10" src={addImage} alt="Add-Note" />
+                    <svg className="h-12 w-12 fixed bottom-6 right-4 md:bottom-10 md:right-10 bg-blue-500 p-2 rounded-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#fcfcfc" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" /></svg>
                 </button>
 
 
@@ -87,13 +87,13 @@ const Notes = () => {
 
             {
                 isOpen &&
-                <NoteForm toggle={toggleOpen} prevId={prevId} setPrevId={setPrevId}/>
+                <NoteForm toggle={toggleOpen} prevId={prevId} setPrevId={setPrevId} />
             }
 
 
             {/* notes section */}
 
-            <div className="w-[95%] md:w-[95%] m-auto p-1 md:p-10 columns-2 sm:columns-3 lg:columns-4 xl:columns-5">
+            <div className="w-[90%] m-auto columns-2 sm:columns-3 lg:columns-4 xl:columns-5">
 
 
                 {
@@ -124,15 +124,19 @@ const Notes = () => {
                             </div>
                         )
                     })
-                        : <div className="text-xl m-auto flex justify-center w-screen">No notes found</div>
+                        : <div className="text-xl"></div>
 
                 }
             </div>
 
+            {
+                !data?.length && <div className="w-full flex justify-center text-xl mt-5">No notes found</div>
+            }
+
 
 
             {
-                view && <View isView= {isView} noteId = {urlId} setPrevId={setPrevId} toggleOpen={toggleOpen}/>
+                view && <View isView={isView} noteId={urlId} setPrevId={setPrevId} toggleOpen={toggleOpen} />
             }
 
 
