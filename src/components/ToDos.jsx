@@ -22,7 +22,7 @@ const ToDos = () => {
     const data = useSelector((state) => state.todos.todos);
 
     const [task, setTask] = useState("");
-    const [date, setDate] = useState(null)
+    const [date, setDate] = useState("")
     // const [status, setStatus] = useState(false)
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
@@ -40,7 +40,7 @@ const ToDos = () => {
         }
         dispatch(addToTodo(todo))
         setTask("")
-        setDate()
+        setDate("")
     }
 
     const handleStatus = (e)=>{
@@ -104,6 +104,7 @@ const ToDos = () => {
                                 <input
                                     type="date"
                                     className="block w-full pl-10 p-2.5 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    value={date}
                                     onChange={(e) => {
                                         setDate(e.target.value);
                                     }}
