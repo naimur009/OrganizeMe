@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editPending } from "../Features/toDos/todosSlice";
+import { editPending, deletePrev } from "../Features/toDos/todosSlice";
 
 
 const Home = () => {
@@ -8,6 +8,7 @@ const Home = () => {
     const URL = "https://quotes-api-self.vercel.app/quote";
 
     const [quote, setQuote] = useState("");
+
 
     useEffect(() => {
         document.title = "OrganizeMe"
@@ -41,18 +42,29 @@ const Home = () => {
         return date;  // Return the next day as a Date object
     }
 
+    function getPrevDay(currentDate) {
+        const date = new Date(currentDate);  // Clone the current date to avoid modifying the original date
+        date.setDate(date.getDate() - 1);   // Add one day to the date
+        return date;  // Return the next day as a Date object
+    }
+
     const today = formatDate(new Date());
 
-    const fullData = useSelector((state) => state.todos.todos);
+    const prev = formatDate(getPrevDay(today));
 
+    const fullData = useSelector((state) => state.todos.todos);
     const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(deletePrev(prev))
+    }, [])
+
 
     const data = fullData.filter((todo) => {
         return today == todo.date
     })
 
     const nextDay = formatDate(getNextDay(today));
-    console.log(nextDay);
 
 
     const upCommingData = fullData.filter((todo) => {
@@ -223,17 +235,8 @@ const Home = () => {
                                     className="w-[95%] md:w-[600px] lg:w-[300px] xl:w-[400px] mt-3 pl-3 p-1 bg-gray-700 m-auto rounded-lg flex gap-5"
                                     key={task.id}
                                 >
-                                    <input
-                                        type="checkbox"
-                                        name="taskComplete"
-                                        id="task"
-                                        checked={task.pending === false}
-                                        onChange={() => {
-                                            handleStatus(task.id)
-                                        }}
-                                    />
 
-                                    <div className="flex justify-between items-center w-full">
+                                    <div className="flex justify-between items-center w-full pl-3">
                                         {/* text-xl text-white */}
                                         <div className="flex flex-col">
                                             <div className={!task.pending ? "text-base text-white line-through" : "text-base text-white"}>

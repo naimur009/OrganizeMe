@@ -7,10 +7,17 @@ const initialState = {
     : []
 }
 
+ 
 export const todosSlice = createSlice({
     name:'todo',
     initialState,
     reducers:{
+        deletePrev:(state, action)=>{
+            state.todos = state.todos.filter((todo)=>{
+                return action.payload !== todo.date
+            })
+            localStorage.setItem("todos", JSON.stringify(state.todos));
+        },
         addToTodo: (state, action)=>{
             state.todos.push(action.payload)
             localStorage.setItem("todos", JSON.stringify(state.todos))
@@ -33,5 +40,5 @@ export const todosSlice = createSlice({
     }
 })
 
-export const {addToTodo, deleteTask, editPending} = todosSlice.actions
+export const {deletePrev, addToTodo, deleteTask, editPending} = todosSlice.actions
 export default todosSlice.reducer
