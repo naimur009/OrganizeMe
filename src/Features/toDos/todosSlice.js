@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
 const initialState = {
     todos: localStorage.getItem("todos")
@@ -13,6 +14,7 @@ export const todosSlice = createSlice({
         addToTodo: (state, action)=>{
             state.todos.push(action.payload)
             localStorage.setItem("todos", JSON.stringify(state.todos))
+            toast.success("Task Added")
         },
 
         deleteTask: (state, action) =>{
@@ -20,6 +22,7 @@ export const todosSlice = createSlice({
                 return action.payload !== todo.id
             })
             localStorage.setItem("todos", JSON.stringify(state.todos));
+            toast.success("Task Deleted")
         },
 
         editPending: (state, action)=>{

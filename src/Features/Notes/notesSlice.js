@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import toast from 'react-hot-toast';
 
 const initialState = {
     notes: localStorage.getItem("notes")
@@ -13,6 +14,8 @@ export const notesSlice = createSlice({
         addToNote: (state, action)=>{
             state.notes.push(action.payload);
             localStorage.setItem("notes", JSON.stringify(state.notes));
+            toast.success("Note Saved");
+
         },
 
         editNote: (state, action) =>{
@@ -21,7 +24,12 @@ export const notesSlice = createSlice({
             )
             state.notes[index] = action.payload;
             localStorage.setItem("notes", JSON.stringify(state.notes));
+            toast.success("Note Updated")
 
+        },
+
+        addToImportant:(state, action)=>{
+            console.log("I am ok")
         },
 
         moveToTrash: (state, action) =>{
@@ -31,6 +39,7 @@ export const notesSlice = createSlice({
 
             state.notes[index].trashed = true;
             localStorage.setItem("notes", JSON.stringify(state.notes));
+            toast.success("Note Move to Trash");
 
         },
 
@@ -40,6 +49,7 @@ export const notesSlice = createSlice({
             )
             state.notes[index].trashed = false;
             localStorage.setItem("notes", JSON.stringify(state.notes));
+            toast.success("Note Restored");
         },
 
         deleteNote:(state, action)=>{
@@ -47,6 +57,7 @@ export const notesSlice = createSlice({
                 return action.payload !== note.id
             })
             localStorage.setItem("notes", JSON.stringify(state.notes));
+            toast.success("Note Deleted");
         }
 
     },
