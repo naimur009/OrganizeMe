@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from '@reduxjs/toolkit';
 
 
+
 const ToDos = () => {
 
     useEffect(() => {
@@ -22,32 +23,28 @@ const ToDos = () => {
     const data = useSelector((state) => state.todos.todos);
 
     const [task, setTask] = useState("");
-    const [date, setDate] = useState("")
-    // const [status, setStatus] = useState(false)
-    const currentDate = new Date().toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-    });
+    const [rawDate, setRawDate] = useState("")
+
 
     const handleAdd = (e) => {
         e.preventDefault();
         const todo = {
             id: nanoid(),
             task: task,
-            date: date || currentDate,
+            date: rawDate,
             pending: true
         }
         dispatch(addToTodo(todo))
         setTask("")
-        setDate("")
+        setRawDate("")
+
     }
 
-    const handleStatus = (e)=>{
+    const handleStatus = (e) => {
         dispatch(editPending(e))
     }
 
-    const handleDelete = (e)=>{
+    const handleDelete = (e) => {
         dispatch(deleteTask(e))
     }
 
@@ -67,8 +64,8 @@ const ToDos = () => {
                         required
                         autoComplete="off"
                         value={task}
-                        onClick={()=>{
-                            if(!todoToggle) handleNewToDo()
+                        onClick={() => {
+                            if (!todoToggle) handleNewToDo()
                         }}
                         onChange={(e) => {
                             setTask(e.target.value)
@@ -104,9 +101,10 @@ const ToDos = () => {
                                 <input
                                     type="date"
                                     className="block w-full pl-10 p-2.5 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    value={date}
+                                    value={rawDate}
+                                    required
                                     onChange={(e) => {
-                                        setDate(e.target.value);
+                                        setRawDate(e.target.value);
                                     }}
                                 />
                             </div>
@@ -133,12 +131,13 @@ const ToDos = () => {
                         <div
                             className="w-[95%] md:w-[600px] mt-3 pl-3 p-2 bg-gray-700 m-auto rounded-lg flex gap-5"
                             key={task.id}
-                            >
+                        >
                             <input
                                 type="checkbox"
                                 name="taskComplete"
                                 id="task"
-                                onChange={()=>{
+                                checked={task.pending === false}
+                                onChange={() => {
                                     handleStatus(task.id)
                                 }}
                             />
@@ -146,12 +145,21 @@ const ToDos = () => {
                             <div className="flex justify-between items-center w-full">
                                 {/* text-xl text-white */}
                                 <div className="flex flex-col">
-                                    <div className={!task.pending ? "text-xl text-white line-through" : "text-xl text-white"}>
+                                    <div className={!task.pending ? "text-base text-white line-through" : "text-base text-white"}>
                                         {task.task}
                                     </div>
 
                                     <div className="text-xs">
-                                        {task.date}
+                                        {/* {task.date} */}
+                                    
+                                        {
+                                            new Date(task.date).toLocaleDateString("en-US", {
+                                                    month: "long",
+                                                    day: "numeric",
+                                                    year: "numeric",
+                                                })
+
+                                        }
                                     </div>
                                 </div>
 
@@ -166,9 +174,9 @@ const ToDos = () => {
                             </div>
                         </div>
                     )
-                   
+
                 })
-                : <div className="text-xl flex justify-center mt-10">No task found</div>
+                    : <div className="text-xl flex justify-center mt-10">No task found</div>
             }
 
 
