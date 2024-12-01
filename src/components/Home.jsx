@@ -5,7 +5,9 @@ import { editPending, deletePrev } from "../Features/toDos/todosSlice";
 
 const Home = () => {
 
-    const URL = "https://quotes-api-self.vercel.app/quote";
+    // const URL = "https://quotes-api-self.vercel.app/quote";
+    const URL = 'https://dummyjson.com/quotes/random';
+
 
     const [quote, setQuote] = useState("");
 
@@ -19,6 +21,7 @@ const Home = () => {
             const response = await fetch(URL);
             const data = await response.json();
             setQuote(data)
+            console.log(quote);
         })()
     }, [])
 
@@ -136,10 +139,6 @@ const Home = () => {
                     {/* Tasks */}
                     <h1 className="text-2xl font-extrabold mt-7 flex w-full justify-center lg:mt-10">You Have {data?.length} tasks for today.</h1>
                     <h1 className="text-base  mt-1 flex w-full justify-center lg:mt-1">{date}</h1>
-                    {/* <div className="text-xl font-medium mt-3 flex flex-col w-full items-center ">
-                        <div>Completed : <span className='pr-1 text-green-500'>{complete}</span></div>
-                        <div>Pending : <span className='pr-1 pl-1 text-blue-600'>{pending}</span></div>
-                    </div> */}
 
                     {
                         data?.length
