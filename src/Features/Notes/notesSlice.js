@@ -25,22 +25,15 @@ export const notesSlice = createSlice({
             state.notes[index] = action.payload;
             localStorage.setItem("notes", JSON.stringify(state.notes));
             toast.success("Note Updated")
-
-        },
-
-        addToImportant:(state, action)=>{
-            console.log("I am ok")
         },
 
         moveToTrash: (state, action) =>{
             const index = state.notes.findIndex((note)=>
                 (note.id === action.payload)
             )
-
             state.notes[index].trashed = true;
             localStorage.setItem("notes", JSON.stringify(state.notes));
             toast.success("Note Move to Trash");
-
         },
 
         restoreNote:(state, action)=>{
@@ -58,12 +51,19 @@ export const notesSlice = createSlice({
             })
             localStorage.setItem("notes", JSON.stringify(state.notes));
             toast.success("Note Deleted");
-        }
+        },
 
+        emptyTrash:(state)=>{
+            state.notes = state.notes.filter((note)=>{
+                return note.trashed === false
+            })
+            localStorage.setItem("notes", JSON.stringify(state.notes));
+            toast.success("Trash Empty")
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addToNote, editNote, moveToTrash, restoreNote, deleteNote } = notesSlice.actions
+export const { addToNote, editNote, moveToTrash, restoreNote, deleteNote, emptyTrash } = notesSlice.actions
 
 export default notesSlice.reducer

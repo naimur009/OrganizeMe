@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { addToTodo, deleteTask, editPending } from "../Features/toDos/todosSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -151,13 +152,13 @@ const ToDos = () => {
 
                                     <div className="text-xs">
                                         {/* {task.date} */}
-                                    
+
                                         {
                                             new Date(task.date).toLocaleDateString("en-US", {
-                                                    month: "long",
-                                                    day: "numeric",
-                                                    year: "numeric",
-                                                })
+                                                month: "long",
+                                                day: "numeric",
+                                                year: "numeric",
+                                            })
 
                                         }
                                     </div>

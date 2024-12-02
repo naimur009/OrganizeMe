@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { restoreNote, deleteNote } from '../Features/Notes/notesSlice'
+import { restoreNote, deleteNote, emptyTrash } from '../Features/Notes/notesSlice'
 
 
 const Trash = () => {
@@ -26,6 +26,10 @@ const Trash = () => {
     dispatch(deleteNote(e));
   }
 
+  const empty = () => {
+    dispatch(emptyTrash());
+  }
+
   return (
     <div>
 
@@ -34,7 +38,21 @@ const Trash = () => {
         {
           data?.length > 0 && <h1 className="text-2xl font-extrabold mt-7 ml-5 md:flex md:w-full md:justify-center md:mt-10">Deleted Notes</h1>
         }
+        {
+          data?.length > 0 &&
+          <div className="w-screen flex justify-center mt-5">
+            <button
+              className="p-2 px-4 bg-red-500 rounded-xl font-medium"
+              onClick={empty}
+
+            >
+              Empty Trash</button>
+          </div>
+
+        }
         <div className="w-[95%] md:w-[95%] m-auto p-1 md:p-10 columns-2 sm:columns-3 lg:columns-4 xl:columns-5">
+
+
 
 
           {
@@ -91,8 +109,8 @@ const Trash = () => {
 
         </div>
         {
-            !data?.length && <h1 className="text-base flex w-full justify-center mt-10" >Trash is empty</h1>
-          }
+          !data?.length && <h1 className="text-base flex w-full justify-center mt-10" >Trash is empty</h1>
+        }
       </div>
 
     </div>
